@@ -11,6 +11,11 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
+/**
+ * 用户参与砍价表实体
+ * @author hong
+ */
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
