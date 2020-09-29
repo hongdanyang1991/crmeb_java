@@ -28,4 +28,7 @@ public class StoreBargain implements Serializable {
     @ApiModelProperty(value = "砍价商品ID")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
+    @ApiModelProperty(value = "排序")
+    private Integer sort;
 }

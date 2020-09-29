@@ -7,9 +7,11 @@ import com.zbkj.crmeb.marketing.model.StoreBargain;
 import com.zbkj.crmeb.marketing.request.StoreBargainRequest;
 import com.zbkj.crmeb.marketing.request.StoreBargainSearchRequest;
 import com.zbkj.crmeb.marketing.response.StoreBargainInfoResponse;
+import com.zbkj.crmeb.marketing.service.StoreBargainService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "营销 -- 砍价")
 public class StoreBargainController {
 
+    @Autowired
+    private StoreBargainService storeBargainService;
 
     /**
      * 分页显示砍价表
@@ -31,7 +35,8 @@ public class StoreBargainController {
     @ApiOperation(value = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreBargain>> getList(@Validated StoreBargainSearchRequest request, @Validated PageParamRequest pageParamRequest){
-        return CommonResult.success(null);
+        CommonPage<StoreBargain> storeCouponCommonPage = CommonPage.restPage(storeBargainService.getList(request, pageParamRequest));
+        return CommonResult.success(storeCouponCommonPage);
     }
 
     /**
